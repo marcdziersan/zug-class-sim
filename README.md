@@ -1,4 +1,4 @@
-# 🚆 Zugfahrten-Simulationssystem
+# 🚆 Zug-Klassen-Simulationssystem
 
 Ein objektorientiertes Simulationssystem für Zugfahrten – ideal zur Veranschaulichung von OOP-Konzepten für Fachinformatiker für Anwendungsentwicklung (FIAE).
 
@@ -10,6 +10,7 @@ Dieses Projekt besteht aus zwei HTML-Dateien:
 |---------------|--------------------------------------------------------|
 | `index.html`  | Dokumentation des Systems (Klassenmodell, OOP, etc.)  |
 | `bahn.html`   | Die interaktive Simulation mit Zug- und Fahrplanlogik |
+| `example.js`   | Der JS Teil vollständig kommentiert |
 
 ---
 
@@ -43,8 +44,9 @@ Die Zug- und Routeninformationen sind im JSON-ähnlichen Format eingebettet.
 ## 📁 Verwendung
 
 1. Lade beide Dateien in denselben Ordner.
-2. Öffne `bahn.html` in deinem Browser, um die Simulation zu starten bzw. öffne diese um den Quelltext anzuzeigen.
-3. Lies `index.html`, um das System zu verstehen und ggf. zu erweitern.
+2. Öffne `bahn.html` in deinem Browser, um die Simulation zu starten.
+3. Öffne `example.js` in VS Code, Editor, etc.. um die Anwendung bzw. die Klassenabläufe zu verstehen.
+4. Lies `index.html`, um das System zu verstehen und ggf. zu erweitern.
 
 ---
 
