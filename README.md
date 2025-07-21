@@ -43,7 +43,7 @@ Die Zug- und Routeninformationen sind im JSON-ähnlichen Format eingebettet.
 ## 📁 Verwendung
 
 1. Lade beide Dateien in denselben Ordner.
-2. Öffne `bahn.html` in deinem Browser, um die Simulation zu starten.
+2. Öffne `bahn.html` in deinem Browser, um die Simulation zu starten bzw. öffne diese um den Quelltext anzuzeigen.
 3. Lies `index.html`, um das System zu verstehen und ggf. zu erweitern.
 
 ---
@@ -67,9 +67,8 @@ Die Zug- und Routeninformationen sind im JSON-ähnlichen Format eingebettet.
 
 ## ✍️ Autor
 
-Marcus Dziersan – Fachinformatiker (AE) in Umschulung  
-📬 Webentwicklung für Selbstständige & KMU  
-🌐 [Website Check](#) *(Link nach Wunsch ergänzen)*
+Marcus Dziersan
+🌐 [Website Check](https://marbyte.org/zug/index.html) *(Link nach Wunsch ergänzen)*
 
 ---
 
