@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dokumentation: Zugfahrten-System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    h1 {
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 0.5rem;
+    }
+    h2 {
+      margin-top: 2rem;
+      border-left: 4px solid #3498db;
+      padding-left: 1rem;
+    }
+    h3 {
+      margin-top: 1.5rem;
+      color: #2980b9;
+    }
+    .code-block {
+      background: #f8f9fa;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      font-family: Consolas, Monaco, 'Andale Mono', monospace;
+      overflow-x: auto;
+    }
+    .note {
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    .class-diagram {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    .relationship {
+      margin-left: 1rem;
+      padding-left: 1rem;
+      border-left: 2px solid #eee;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .uml-table {
+      width: auto;
+      margin: 1rem 0;
+    }
+    .uml-table td {
+      border: 1px solid #000;
+      padding: 5px;
+    }
+    .uml-header {
+      background-color: #3498db;
+      color: white;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dokumentation: Zugfahrten-Simulationssystem</h1>
+  
+  <div class="note">
+    <p>Diese Dokumentation erklärt das objektorientierte <a href="bahn.html">Zugfahrten-Simulationssystem</a>a> für angehende Fachinformatiker für Anwendungsentwicklung (FIAE).</p>
+  </div>
+
+  <h2>1. Systemübersicht</h2>
+  <p>Das System simuliert verschiedene Zugfahrten mit ihren Komponenten (Triebfahrzeuge, Waggons, Abteile) und Routen (Bahnhöfe). Es demonstriert grundlegende Prinzipien der objektorientierten Programmierung (OOP) in JavaScript.</p>
+
+  <h3>Hauptfunktionen:</h3>
+  <ul>
+    <li>Modellierung verschiedener Zugtypen (Regionalexpress, ICE, S-Bahn, Güterzug)</li>
+    <li>Darstellung der Zugkomposition (Triebfahrzeuge, Waggons, Abteile)</li>
+    <li>Visualisierung von Fahrtrouten zwischen Bahnhöfen</li>
+    <li>Generierung eines Fahrplans mit allen Zugfahrten</li>
+  </ul>
+
+  <h2>2. Klassenmodell</h2>
+  <p>Das System basiert auf einem objektorientierten Klassenmodell mit Vererbung und Komposition.</p>
+
+  <div class="class-diagram">
+    <h3>Klassendiagramm (textuelle Darstellung)</h3>
+    <table class="uml-table">
+      <tr><td class="uml-header">Waggon</td></tr>
+      <tr><td>+ typ: string</td></tr>
+      <tr><td>+ constructor(typ: string)</td></tr>
+    </table>
+    
+    <div class="relationship">
+      <p>↑ <em>Waggon ist die Basisklasse für:</em></p>
+      
+      <table class="uml-table">
+        <tr><td class="uml-header">Personenwagen</td></tr>
+        <tr><td>- abteile: Abteil[]</td></tr>
+        <tr><td>+ constructor()</td></tr>
+        <tr><td>+ abteilHinzufuegen(abteil: Abteil): void</td></tr>
+      </table>
+      
+      <table class="uml-table">
+        <tr><td class="uml-header">Speisewagen</td></tr>
+        <tr><td>+ constructor()</td></tr>
+      </table>
+      
+      <table class="uml-table">
+        <tr><td class="uml-header">Gitterwaggon</td></tr>
+        <tr><td>+ constructor()</td></tr>
+      </table>
+    </div>
+    
+    <table class="uml-table">
+      <tr><td class="uml-header">Triebfahrzeug</td></tr>
+      <tr><td>+ typ: string</td></tr>
+      <tr><td>+ constructor(typ: string)</td></tr>
+    </table>
+    
+    <div class="relationship">
+      <p>↑ <em>Triebfahrzeug ist die Basisklasse für:</em></p>
+      
+      <table class="uml-table">
+        <tr><td class="uml-header">DieselLok</td></tr>
+        <tr><td>+ constructor()</td></tr>
+      </table>
+      
+      <table class="uml-table">
+        <tr><td class="uml-header">ELok</td></tr>
+        <tr><td>+ constructor()</td></tr>
+      </table>
+    </div>
+    
+    <table class="uml-table">
+      <tr><td class="uml-header">Zug</td></tr>
+      <tr><td>- name: string</td></tr>
+      <tr><td>- triebfahrzeuge: Triebfahrzeug[]</td></tr>
+      <tr><td>- steuerwagen: boolean</td></tr>
+      <tr><td>- waggons: Waggon[]</td></tr>
+      <tr><td>+ constructor(name: string, triebfahrzeuge: Triebfahrzeug[], steuerwagen: boolean)</td></tr>
+      <tr><td>+ waggonHinzufuegen(waggon: Waggon): void</td></tr>
+    </table>
+    
+    <table class="uml-table">
+      <tr><td class="uml-header">Fahrt</td></tr>
+      <tr><td>- zug: Zug</td></tr>
+      <tr><td>- bahnhoefe: Bahnhof[]</td></tr>
+      <tr><td>+ constructor(zug: Zug, bahnhoefe: Bahnhof[])</td></tr>
+    </table>
+    
+    <table class="uml-table">
+      <tr><td class="uml-header">Fahrplan</td></tr>
+      <tr><td>- fahrten: Fahrt[]</td></tr>
+      <tr><td>+ constructor()</td></tr>
+      <tr><td>+ fahrtHinzufuegen(fahrt: Fahrt): void</td></tr>
+      <tr><td>+ anzeigen(htmlElement: HTMLElement): void</td></tr>
+    </table>
+  </div>
+
+  <h2>3. Detaillierte Klassendokumentation</h2>
+
+  <h3>3.1 Bahnhof</h3>
+  <p>Repräsentiert einen Bahnhof mit Namen.</p>
+  <div class="code-block">
+    class Bahnhof {
+      constructor(name) {
+        this.name = name; // Name des Bahnhofs
+      }
+    }
+  </div>
+  
+  <h3>3.2 Abteil</h3>
+  <p>Repräsentiert ein Abteil in einem Personenwagen.</p>
+  <div class="code-block">
+    class Abteil {
+      constructor(nummer) {
+        this.nummer = nummer; // Nummer des Abteils
+      }
+    }
+  </div>
+
+  <h3>3.3 Waggon und spezialisierte Waggons</h3>
+  <p>Basisklasse für alle Waggontypen mit spezialisierten Unterklassen.</p>
+  <div class="code-block">
+    // Basisklasse
+    class Waggon {
+      constructor(typ) {
+        this.typ = typ; // Typ des Waggons
+      }
+    }
+    
+    // Personenwagen mit Abteilen
+    class Personenwagen extends Waggon {
+      constructor() {
+        super("Personenwagen");
+        this.abteile = []; // Array für Abteile
+      }
+      
+      abteilHinzufuegen(abteil) {
+        this.abteile.push(abteil);
+      }
+    }
+    
+    // Speisewagen ohne Abteile
+    class Speisewagen extends Waggon {
+      constructor() {
+        super("Speisewagen");
+      }
+    }
+    
+    // Gitterwaggon für Güter
+    class Gitterwaggon extends Waggon {
+      constructor() {
+        super("Gitterwaggon");
+      }
+    }
+  </div>
+
+  <h3>3.4 Triebfahrzeug und spezialisierte Loks</h3>
+  <p>Basisklasse für Triebfahrzeuge mit spezialisierten Unterklassen.</p>
+  <div class="code-block">
+    // Basisklasse
+    class Triebfahrzeug {
+      constructor(typ) {
+        this.typ = typ; // Typ des Triebfahrzeugs
+      }
+    }
+    
+    // Diesel-Lokomotive
+    class DieselLok extends Triebfahrzeug {
+      constructor() {
+        super("Diesel-Lok");
+      }
+    }
+    
+    // Elektro-Lokomotive
+    class ELok extends Triebfahrzeug {
+      constructor() {
+        super("E-Lok");
+      }
+    }
+  </div>
+
+  <h3>3.5 Zug</h3>
+  <p>Repräsentiert einen kompletten Zug mit Triebfahrzeugen und Waggons.</p>
+  <div class="code-block">
+    class Zug {
+      constructor(name, triebfahrzeuge, steuerwagen) {
+        this.name = name; // Zugname/Nummer
+        this.triebfahrzeuge = triebfahrzeuge; // Array von Triebfahrzeugen
+        this.steuerwagen = steuerwagen; // Hat der Zug einen Steuerwagen?
+        this.waggons = []; // Array für Waggons
+      }
+      
+      waggonHinzufuegen(waggon) {
+        this.waggons.push(waggon);
+      }
+    }
+  </div>
+
+  <h3>3.6 Fahrt</h3>
+  <p>Repräsentiert eine Zugfahrt mit Route (mindestens 2 Bahnhöfe).</p>
+  <div class="code-block">
+    class Fahrt {
+      constructor(zug, bahnhoefe) {
+        if (bahnhoefe.length < 2) {
+          throw new Error("Eine Fahrt muss mindestens zwei Bahnhöfe enthalten.");
+        }
+        this.zug = zug; // Zug-Objekt
+        this.bahnhoefe = bahnhoefe; // Array von Bahnhöfen
+      }
+    }
+  </div>
+
+  <h3>3.7 Fahrplan</h3>
+  <p>Verwaltet eine Sammlung von Fahrten und stellt sie dar.</p>
+  <div class="code-block">
+    class Fahrplan {
+      constructor() {
+        this.fahrten = []; // Array für Fahrten
+      }
+      
+      fahrtHinzufuegen(fahrt) {
+        this.fahrten.push(fahrt);
+      }
+      
+      anzeigen(htmlElement) {
+        if (this.fahrten.length === 0) {
+          htmlElement.innerHTML = "&lt;p>Keine Fahrten im Fahrplan.&lt;/p>";
+          return;
+        }
+        
+        this.fahrten.forEach(fahrt => {
+          // Erstellt die HTML-Darstellung für jede Fahrt
+          // (Details siehe Originalcode)
+        });
+      }
+    }
+  </div>
+
+  <h2>4. Objektbeziehungen</h2>
+
+  <h3>4.1 Vererbung (Generalisierung/Spezialisierung)</h3>
+  <ul>
+    <li><strong>Personenwagen, Speisewagen, Gitterwaggon</strong> erben von <strong>Waggon</strong></li>
+    <li><strong>DieselLok, ELok</strong> erben von <strong>Triebfahrzeug</strong></li>
+  </ul>
+
+  <h3>4.2 Komposition (Teil-Ganzes-Beziehungen)</h3>
+  <ul>
+    <li><strong>Zug</strong> besteht aus:
+      <ul>
+        <li>1..n <strong>Triebfahrzeugen</strong></li>
+        <li>0..1 <strong>Steuerwagen</strong> (als boolean-Flag)</li>
+        <li>0..n <strong>Waggons</strong></li>
+      </ul>
+    </li>
+    <li><strong>Personenwagen</strong> besteht aus:
+      <ul>
+        <li>0..n <strong>Abteilen</strong></li>
+      </ul>
+    </li>
+    <li><strong>Fahrt</strong> besteht aus:
+      <ul>
+        <li>1 <strong>Zug</strong></li>
+        <li>2..n <strong>Bahnhöfen</strong></li>
+      </ul>
+    </li>
+    <li><strong>Fahrplan</strong> besteht aus:
+      <ul>
+        <li>0..n <strong>Fahrten</strong></li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>4.3 Assoziationen</h3>
+  <ul>
+    <li><strong>Bahnhof</strong> ist assoziiert mit <strong>Fahrt</strong> über die Route</li>
+    <li><strong>Abteil</strong> ist assoziiert mit <strong>Personenwagen</strong></li>
+    <li><strong>Waggon</strong> ist assoziiert mit <strong>Zug</strong></li>
+    <li><strong>Triebfahrzeug</strong> ist assoziiert mit <strong>Zug</strong></li>
+  </ul>
+
+  <h3>4.4 Abhängigkeiten</h3>
+  <ul>
+    <li><strong>Fahrt</strong> ist abhängig von <strong>Zug</strong> und <strong>Bahnhof</strong></li>
+    <li><strong>Fahrplan</strong> ist abhängig von <strong>Fahrt</strong></li>
+    <li><strong>Zug</strong> ist abhängig von <strong>Triebfahrzeug</strong> und <strong>Waggon</strong></li>
+    <li><strong>Personenwagen</strong> ist abhängig von <strong>Abteil</strong></li>
+  </ul>
+
+  <h2>5. Dateninitialisierung</h2>
+  <p>Das System verwendet vordefinierte Zugdaten im JSON-Format:</p>
+  <div class="code-block">
+    const zugdaten = [
+      {
+        name: "RE1",
+        triebfahrzeuge: ["ELok"],
+        steuerwagen: true,
+        waggons: ["Personenwagen", "Personenwagen", "Personenwagen"],
+        abteile: [[1, 2], [3, 4], [5, 6]],
+        route: ["Hamm", "Dortmund", "Essen", "Düsseldorf", "Köln", "Aachen"]
+      },
+      // Weitere Zugdefinitionen...
+    ];
+  </div>
+
+  <h3>Initialisierungsprozess:</h3>
+  <ol>
+    <li>Erstellung eines neuen Fahrplans</li>
+    <li>Verarbeitung jeder Zugdefinition:
+      <ul>
+        <li>Erstellung der Triebfahrzeuge</li>
+        <li>Erstellung des Zug-Objekts</li>
+        <li>Hinzufügen der Waggons (mit Abteilen bei Personenwagen)</li>
+        <li>Erstellung der Bahnhofs-Objekte für die Route</li>
+        <li>Erstellung einer Fahrt mit Zug und Route</li>
+        <li>Hinzufügen der Fahrt zum Fahrplan</li>
+      </ul>
+    </li>
+    <li>Anzeige des Fahrplans im HTML-DOM</li>
+  </ol>
+
+  <h2>6. OOP-Prinzipien im System</h2>
+
+  <h3>6.1 Kapselung</h3>
+  <p>Jede Klasse kapselt ihre Eigenschaften und Methoden:</p>
+  <ul>
+    <li>Eigenschaften sind direkt in den Objekten gespeichert</li>
+    <li>Methoden arbeiten auf den internen Daten</li>
+  </ul>
+
+  <h3>6.2 Vererbung</h3>
+  <p>Spezialisierte Klassen erweitern Basisklassen:</p>
+  <ul>
+    <li>Waggon als Basis für Personenwagen, Speisewagen, Gitterwaggon</li>
+    <li>Triebfahrzeug als Basis für DieselLok und ELok</li>
+  </ul>
+
+  <h3>6.3 Polymorphie</h3>
+  <p>Unterschiedliche Waggontypen werden einheitlich behandelt:</p>
+  <ul>
+    <li>Alle Waggons haben einen typ</li>
+    <li>Personenwagen haben zusätzlich Abteile</li>
+  </ul>
+
+  <h3>6.4 Komposition</h3>
+  <p>Komplexe Objekte setzen sich aus Teilobjekten zusammen:</p>
+  <ul>
+    <li>Zug besteht aus Triebfahrzeugen und Waggons</li>
+    <li>Personenwagen bestehen aus Abteilen</li>
+    <li>Fahrplan besteht aus Fahrten</li>
+  </ul>
+
+  <h2>7. Lernziele für FIAE Umschüler</h2>
+
+  <h3>7.1 Verständnis der OOP-Konzepte</h3>
+  <ul>
+    <li>Klassen und Objekte</li>
+    <li>Vererbung und Polymorphie</li>
+    <li>Komposition vs. Vererbung</li>
+    <li>Kapselung und Datenkapselung</li>
+  </ul>
+
+  <h3>7.2 JavaScript-spezifische Konzepte</h3>
+  <ul>
+    <li>Klassendefinitionen in ES6</li>
+    <li>Verwendung von constructor()</li>
+    <li>super()-Aufruf in abgeleiteten Klassen</li>
+    <li>Array-Methoden (map, forEach, join)</li>
+    <li>DOM-Manipulation</li>
+  </ul>
+
+  <h3>7.3 Modellierung realer Systeme</h3>
+  <ul>
+    <li>Abbildung realer Objekte auf Klassen</li>
+    <li>Strukturierung komplexer Systeme</li>
+    <li>Datenmodellierung mit JSON-ähnlichen Strukturen</li>
+  </ul>
+
+  <div class="note">
+    <p><strong>Tipp für Umschüler:</strong> Experimentieren Sie mit dem Code! Fügen Sie neue Zugtypen hinzu, erweitern Sie die Klassen oder ändern Sie die Darstellung. Praktische Übung ist der beste Weg, OOP zu verstehen.</p>
+  </div>
+</body>
+</html>
