@@ -4,7 +4,7 @@ Ein objektorientiertes Simulationssystem für Zugfahrten – ideal zur Veranscha
 
 ## 🔍 Übersicht
 
-Dieses Projekt besteht aus zwei HTML-Dateien:
+Dieses Projekt besteht aus zwei HTML-Dateien  eine JS extrahierte Datei.
 
 | Datei         | Beschreibung                                           |
 |---------------|--------------------------------------------------------|
